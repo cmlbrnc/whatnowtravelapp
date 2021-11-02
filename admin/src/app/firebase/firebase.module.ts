@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { NbAuthModule } from '@nebular/auth';
+import { NbAuthModule, NbAuthStrategyOptions, NbPasswordStrategyMessage, NbPasswordStrategyModule } from '@nebular/auth';
 import { NbFirebaseAuthModule, NbFirebasePasswordStrategy, NbFirebaseGoogleStrategy } from '@nebular/firebase-auth';
 
 import { FirebaseAPIService } from './firebase-api.service';
@@ -105,3 +105,35 @@ import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password
 })
 export class FirebasePlaygroundModule {
 }
+
+
+
+export class NbFirebaseIdentityProviderStrategyOptions extends NbAuthStrategyOptions {
+  name: string;
+  logout?: boolean | NbPasswordStrategyModule = {
+     redirect: {
+       success: '/',
+       failure: null,
+     },
+     defaultErrors: ['Something went wrong, please try again.'],
+     defaultMessages: ['You have been successfully logged out.'],
+   };
+   authenticate?: boolean | NbPasswordStrategyModule = {
+     redirect: {
+       success: '/',
+       failure: null,
+     },
+     defaultErrors: ['Something went wrong, please try again.'],
+     defaultMessages: ['You have been successfully authenticated.'],
+   };
+   errors?: NbPasswordStrategyMessage = {
+     key: 'message',
+     getter: (module: string, res, options: NbFirebaseIdentityProviderStrategyOptions) => options[module].defaultErrors,
+   };
+   messages?: NbPasswordStrategyMessage = {
+     key: 'message',
+     getter: (module: string, res, options: NbFirebaseIdentityProviderStrategyOptions) => options[module].defaultMessages,
+   };
+   scopes?: string[] = [];
+   customParameters?: { [key: string]: string } = {};
+ };

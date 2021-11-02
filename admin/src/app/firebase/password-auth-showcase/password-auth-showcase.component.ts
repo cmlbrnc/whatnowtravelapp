@@ -27,6 +27,15 @@ export class PasswordAuthShowcaseComponent {
     this.isAuthenticated$ = this.authService.isAuthenticated();
   }
 
+  ngOnInit() { // In the ngOnInit() or in the constructor
+    const el = document.getElementById('nb-global-spinner');
+    if (el) {
+      el.style['display'] = 'none';
+    }
+}
+
+  
+
   logout() {
     this.router.navigate(['../logout'], { relativeTo: this.route });
   }

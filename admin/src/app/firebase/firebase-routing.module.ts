@@ -16,6 +16,8 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 
+
+
 import { FirebasePlaygroundComponent } from './firebase-playground.component';
 import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password-auth-showcase.component';
 import {
@@ -39,7 +41,7 @@ export const routes: Routes = [
           },
           {
             path: 'login',
-            component: NbLoginComponent,
+            component: IdentityProvidersAuthShowcaseComponent,
           },
           {
             path: 'register',
