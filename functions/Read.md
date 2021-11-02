@@ -1,0 +1,6 @@
+#  firebase deploy 
+
+# Todos
+
+# Errors 
+ - 
