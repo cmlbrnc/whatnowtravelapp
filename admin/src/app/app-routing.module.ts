@@ -11,15 +11,17 @@ import {
 } from '@nebular/auth';
 
 
-import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password-auth-showcase.component';
-import {
-  IdentityProvidersAuthShowcaseComponent,
-} from './identity-proders-auth-showcase/identity-providers-auth-showcase.component';
 
 
 
 
 export const routes: Routes = [
+
+  {
+    path: 'firebase',
+    loadChildren: () => import('./firebase/firebase.module')
+    .then(m => m.FirebasePlaygroundModule),
+  },
  
 
   {
@@ -57,14 +59,7 @@ export const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'password-showcase',
-    component: PasswordAuthShowcaseComponent,
-  },
-  {
-    path: 'social-auth-showcase',
-    component: IdentityProvidersAuthShowcaseComponent,
-  },
+  
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
 
   { path: '**', redirectTo: 'pages' },

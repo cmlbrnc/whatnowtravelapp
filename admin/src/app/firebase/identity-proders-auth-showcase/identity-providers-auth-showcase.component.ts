@@ -37,11 +37,11 @@ export class IdentityProvidersAuthShowcaseComponent {
   }
 
   getData() {
-    // this.data$ = this.firebaseApi.getGreeting()
-    //   .pipe(
-    //     take(1),
-    //     catchError((error) => of(error)),
-    //     share(),
-    //   );
+    this.data$ = this.firebaseApi.getGreeting()
+      .pipe(
+        take(1),
+        catchError((error) => of(error)),
+        share(),
+      );
   }
 }

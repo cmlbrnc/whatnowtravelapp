@@ -32,32 +32,22 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 import { environment } from '../environments/environment';
-
-
-import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
-import { NbFirebaseAuthModule, NbFirebasePasswordStrategy, NbFirebaseGoogleStrategy } from '@nebular/firebase-auth';
+import { FirebasePlaygroundModule } from './firebase/firebase.module';
 
 
 
-import { FirebaseAPIService } from './firebase-api.service';
-
-import {
-  IdentityProvidersAuthShowcaseComponent,
-} from './identity-proders-auth-showcase/identity-providers-auth-showcase.component';
-import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password-auth-showcase.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent,
-    PasswordAuthShowcaseComponent,
-    IdentityProvidersAuthShowcaseComponent,
+  declarations: [AppComponent
     ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    FirebasePlaygroundModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -73,80 +63,10 @@ import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password
     AngularFireAuthModule,
     AngularFirestoreModule,
 
-    NbAuthModule.forRoot({
-      forms: {
-        login: {
-          strategy: 'password',
-          rememberMe: true,
-          socialLinks: [],
-        },
-        register: {
-          strategy: 'password',
-          terms: true,
-          socialLinks: [],
-        },
-        logout: {
-          strategy: 'password',
-        },
-        requestPassword: {
-          strategy: 'password',
-          socialLinks: [],
-        },
-        resetPassword: {
-          strategy: 'password',
-          socialLinks: [],
-        },
-        validation: {
-          password: {
-            required: true,
-            minLength: 6,
-            maxLength: 50,
-          },
-          email: {
-            required: true,
-          },
-          fullName: {
-            required: false,
-            minLength: 4,
-            maxLength: 50,
-          },
-        },
-      },
-      strategies: [
-        NbPasswordAuthStrategy.setup({
-          name: 'password',
-          login: {
-            redirect: {
-              success: 'example/firebase/password-showcase',
-            },
-          },
-          register: {
-            redirect: {
-              success: 'example/firebase/password-showcase',
-            },
-          },
-          logout: {
-            redirect: {
-              success: 'example/firebase/login',
-            },
-          },
-         
-        }),
-       
-      ],
-    }),
-    
-    
-           
-       
-     
-   
-    
   ],
   bootstrap: [AppComponent],
  
   providers: [
-    FirebaseAPIService,
   ],
 })
 export class AppModule {

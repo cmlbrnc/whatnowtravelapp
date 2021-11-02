@@ -27,30 +27,24 @@ export class PasswordAuthShowcaseComponent {
     this.isAuthenticated$ = this.authService.isAuthenticated();
   }
 
-  ngOnInit() { // In the ngOnInit() or in the constructor
-    const el = document.getElementById('nb-global-spinner');
-    if (el) {
-      el.style['display'] = 'none';
-    }
-}
-
   logout() {
-    this.router.navigate(['../auth/logout'], { relativeTo: this.route });
+    this.router.navigate(['../logout'], { relativeTo: this.route });
   }
 
   login() {
-    this.router.navigate(['../auth/login'], { relativeTo: this.route });
+    this.router.navigate(['../login'], { relativeTo: this.route });
   }
 
   resetPassword() {
-    this.router.navigate(['../auth/reset-password'], { relativeTo: this.route });
+    this.router.navigate(['../reset-password'], { relativeTo: this.route });
   }
 
   getData() {
-    // this.data$ = this.firebaseApi.getGreeting();
-  }
-
-  signIn() {
-    this.firebaseApi.signInUser('cemil@gmail.com','erseresrsr').then(r=>console.log(r));
+    this.data$ = this.firebaseApi.getGreeting()
+      .pipe(
+        take(1),
+        catchError((error) => of(error)),
+        share(),
+      );
   }
 }
