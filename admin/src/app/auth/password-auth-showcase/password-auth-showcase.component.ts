@@ -23,8 +23,10 @@ export class PasswordAuthShowcaseComponent {
     private firebaseApi: FirebaseAPIService,
     private route: ActivatedRoute,
   ) {
+ 
     this.userToken$ = this.authService.onTokenChange();
     this.isAuthenticated$ = this.authService.isAuthenticated();
+    console.log(this.authService.isAuthenticated());
   }
 
   ngOnInit() { // In the ngOnInit() or in the constructor
@@ -32,6 +34,7 @@ export class PasswordAuthShowcaseComponent {
     if (el) {
       el.style['display'] = 'none';
     }
+    
 }
 
   
@@ -49,11 +52,12 @@ export class PasswordAuthShowcaseComponent {
   }
 
   getData() {
-    this.data$ = this.firebaseApi.getGreeting()
-      .pipe(
-        take(1),
-        catchError((error) => of(error)),
-        share(),
-      );
+    // this.data$ = this.firebaseApi.getGreeting()
+    //   .pipe(
+    //     take(1),
+    //     catchError((error) => of(error)),
+    //     share(),
+    //   );
+    console.log(this.authService)
   }
 }

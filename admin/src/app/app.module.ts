@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -32,7 +33,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 import { environment } from '../environments/environment';
-import { FirebasePlaygroundModule } from './firebase/firebase.module';
+import { NbFirebaseGoogleStrategy, NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
+import { NbAuthModule, NbAuthStrategyOptions, NbPasswordStrategyMessage, NbPasswordStrategyModule } from '@nebular/auth';
+
+
 
 
 
@@ -47,7 +51,7 @@ import { FirebasePlaygroundModule } from './firebase/firebase.module';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    FirebasePlaygroundModule,
+    AuthModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -62,6 +66,88 @@ import { FirebasePlaygroundModule } from './firebase/firebase.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    NbAuthModule.forRoot({
+      forms: {
+        login: {
+          strategy: 'password',
+          rememberMe: true,
+          socialLinks: [],
+        },
+        register: {
+          strategy: 'password',
+          terms: true,
+          socialLinks: [],
+        },
+        logout: {
+          strategy: 'password',
+        },
+        requestPassword: {
+          strategy: 'password',
+          socialLinks: [],
+        },
+        resetPassword: {
+          strategy: 'password',
+          socialLinks: [],
+        },
+        validation: {
+          password: {
+            required: true,
+            minLength: 6,
+            maxLength: 50,
+          },
+          email: {
+            required: true,
+          },
+          fullName: {
+            required: false,
+            minLength: 4,
+            maxLength: 50,
+          },
+        },
+      },
+      strategies: [
+        NbFirebasePasswordStrategy.setup({
+          name: 'password',
+          login: {
+            redirect: {
+              success: '/auth/password-showcase',
+            },
+          },
+          register: {
+            redirect: {
+              success: '/auth/password-showcase',
+            },
+          },
+          logout: {
+            redirect: {
+              success: '/auth/login',
+            },
+          },
+          requestPassword: {
+            redirect: {
+              success: '/auth/login',
+            },
+          },
+          resetPassword: {
+            redirect: {
+              success: '/auth/login',
+            },
+          },
+        }),
+        NbFirebaseGoogleStrategy.setup({
+          name: 'google',
+          authenticate: {
+            redirect: {
+              success: '/test',
+              failure: null,
+            },
+
+          }
+         
+         
+        }),
+      ],
+    }),
 
   ],
   bootstrap: [AppComponent],
@@ -71,3 +157,4 @@ import { FirebasePlaygroundModule } from './firebase/firebase.module';
 })
 export class AppModule {
 }
+

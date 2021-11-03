@@ -1,3 +1,5 @@
+import { LoginGuard } from './../services/login-guard.service';
+import { AuthGuard } from './../services/auth-guard.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
@@ -7,18 +9,18 @@ import { NbAuthModule, NbAuthStrategyOptions, NbPasswordStrategyMessage, NbPassw
 import { NbFirebaseAuthModule, NbFirebasePasswordStrategy, NbFirebaseGoogleStrategy } from '@nebular/firebase-auth';
 
 import { FirebaseAPIService } from './firebase-api.service';
-import { FirebasePlaygroundComponent } from './firebase-playground.component';
-import { FirebasePlaygroundRoutingModule } from './firebase-routing.module';
+import { AuthComponent } from './auth.component';
+import { AuthRoutingModule } from './auth-routing.module';
 import {
-  IdentityProvidersAuthShowcaseComponent,
-} from './identity-proders-auth-showcase/identity-providers-auth-showcase.component';
+  CustomAuthLoginComponent
+} from './custom-auth-login/custom-auth-login';
 import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password-auth-showcase.component';
 
 @NgModule({
   imports: [
     CommonModule,
 
-    FirebasePlaygroundRoutingModule,
+    AuthRoutingModule,
     NbFirebaseAuthModule,
     NbAuthModule.forRoot({
       forms: {
@@ -94,46 +96,18 @@ import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password
       ],
     }),
   ],
+ 
   declarations: [
-    FirebasePlaygroundComponent,
+    AuthComponent,
     PasswordAuthShowcaseComponent,
-    IdentityProvidersAuthShowcaseComponent,
+    CustomAuthLoginComponent,
   ],
   providers: [
     FirebaseAPIService,
+    AuthGuard,
+    LoginGuard
   ],
 })
-export class FirebasePlaygroundModule {
+export class AuthModule {
 }
 
-
-
-export class NbFirebaseIdentityProviderStrategyOptions extends NbAuthStrategyOptions {
-  name: string;
-  logout?: boolean | NbPasswordStrategyModule = {
-     redirect: {
-       success: '/',
-       failure: null,
-     },
-     defaultErrors: ['Something went wrong, please try again.'],
-     defaultMessages: ['You have been successfully logged out.'],
-   };
-   authenticate?: boolean | NbPasswordStrategyModule = {
-     redirect: {
-       success: '/',
-       failure: null,
-     },
-     defaultErrors: ['Something went wrong, please try again.'],
-     defaultMessages: ['You have been successfully authenticated.'],
-   };
-   errors?: NbPasswordStrategyMessage = {
-     key: 'message',
-     getter: (module: string, res, options: NbFirebaseIdentityProviderStrategyOptions) => options[module].defaultErrors,
-   };
-   messages?: NbPasswordStrategyMessage = {
-     key: 'message',
-     getter: (module: string, res, options: NbFirebaseIdentityProviderStrategyOptions) => options[module].defaultMessages,
-   };
-   scopes?: string[] = [];
-   customParameters?: { [key: string]: string } = {};
- };

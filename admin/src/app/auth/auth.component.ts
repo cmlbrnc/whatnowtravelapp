@@ -7,12 +7,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nb-firebase-playground',
+  selector: 'nb-custom-firebase-auth',
   template: `
     <router-outlet></router-outlet>
   `,
 })
-export class FirebasePlaygroundComponent {
+export class AuthComponent {
+  
   ngOnInit() { // In the ngOnInit() or in the constructor
     const el = document.getElementById('nb-global-spinner');
     if (el) {

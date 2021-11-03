@@ -1,3 +1,5 @@
+import { LoginGuard } from './../services/login-guard.service';
+import { CustomAuthLoginComponent } from './custom-auth-login/custom-auth-login';
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -18,17 +20,14 @@ import {
 
 
 
-import { FirebasePlaygroundComponent } from './firebase-playground.component';
+import { AuthComponent } from './auth.component';
 import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password-auth-showcase.component';
-import {
-  IdentityProvidersAuthShowcaseComponent,
-} from './identity-proders-auth-showcase/identity-providers-auth-showcase.component';
 
 
 export const routes: Routes = [
   {
     path: '',
-    component: FirebasePlaygroundComponent,
+    component: AuthComponent,
     children: [
       {
         path: '',
@@ -41,7 +40,8 @@ export const routes: Routes = [
           },
           {
             path: 'login',
-            component: IdentityProvidersAuthShowcaseComponent,
+            
+            component: CustomAuthLoginComponent,
           },
           {
             path: 'register',
@@ -66,16 +66,12 @@ export const routes: Routes = [
   {
     path: 'password-showcase',
     component: PasswordAuthShowcaseComponent,
-  },
-  {
-    path: 'social-auth-showcase',
-    component: IdentityProvidersAuthShowcaseComponent,
-  },
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FirebasePlaygroundRoutingModule {
+export class AuthRoutingModule {
 }

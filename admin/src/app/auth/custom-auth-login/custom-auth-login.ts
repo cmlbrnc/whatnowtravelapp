@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, share, take } from 'rxjs/operators';
 import { NbAuthResult, NbAuthService, NbAuthToken } from '@nebular/auth';
 
 import { FirebaseAPIService } from '../firebase-api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-google-auth-showcase',
-  templateUrl: './identity-providers-auth-showcase.component.html',
-  styleUrls: ['./identity-providers-auth-showcase.component.scss'],
+  selector: 'custom-auth-login',
+  templateUrl: './custom-auth-login.component.html',
+  styleUrls: ['./custom-auth-login.scss'],
 })
-export class IdentityProvidersAuthShowcaseComponent {
-
+export class CustomAuthLoginComponent {
+  private destroy$: Subject<void> = new Subject<void>();
   userToken$: Observable<NbAuthToken>;
   isAuthenticated$: Observable<boolean>;
   data$: Observable<any>;
@@ -19,6 +20,8 @@ export class IdentityProvidersAuthShowcaseComponent {
   constructor(
     private firebaseApi: FirebaseAPIService,
     private authService: NbAuthService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.userToken$ = this.authService.onTokenChange();
     this.isAuthenticated$ = this.authService.onAuthenticationChange();
@@ -26,14 +29,18 @@ export class IdentityProvidersAuthShowcaseComponent {
 
   logout() {
     this.authService.logout('google')
-      .pipe(take(1))
+      .pipe()
       .subscribe((authResult: NbAuthResult) => {});
   }
 
   loginWithGoogle() {
     this.authService.authenticate('google')
-      .pipe(take(1))
-      .subscribe((authResult: NbAuthResult) => {});
+      .pipe()
+      .subscribe((authResult: NbAuthResult) => {
+        console.log(authResult);
+
+        this.router.navigate(['/'], { relativeTo: this.route });
+      });
   }
 
   getData() {
@@ -44,4 +51,7 @@ export class IdentityProvidersAuthShowcaseComponent {
         share(),
       );
   }
+
+ 
+
 }

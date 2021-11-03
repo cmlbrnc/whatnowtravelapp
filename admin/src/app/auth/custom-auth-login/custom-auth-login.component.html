@@ -1,0 +1,8 @@
+
+
+<button
+  *ngIf="!(isAuthenticated$ | async)"
+  (click)="loginWithGoogle()">
+  Login with google
+</button>
+
