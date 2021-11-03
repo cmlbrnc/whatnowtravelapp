@@ -8,10 +8,10 @@ interface TreeNode<T> {
 }
 
 interface FSEntry {
-  name: string;
-  size: string;
-  kind: string;
-  items?: number;
+  Name: string;
+  Items: number;
+  Total: number;
+
 }
 
 @Component({
@@ -20,8 +20,8 @@ interface FSEntry {
   styleUrls: ['./tree-grid.component.scss'],
 })
 export class TreeGridComponent {
-  customColumn = 'name';
-  defaultColumns = [ 'size', 'kind', 'items' ];
+  customColumn = 'Name';
+  defaultColumns = [  'Items', 'Total' ];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
 
   dataSource: NbTreeGridDataSource<FSEntry>;
@@ -46,30 +46,22 @@ export class TreeGridComponent {
   }
 
   private data: TreeNode<FSEntry>[] = [
-    {
-      data: { name: 'Projects', size: '1.8 MB', items: 5, kind: 'dir' },
-      children: [
-        { data: { name: 'project-1.doc', kind: 'doc', size: '240 KB' } },
-        { data: { name: 'project-2.doc', kind: 'doc', size: '290 KB' } },
-        { data: { name: 'project-3', kind: 'txt', size: '466 KB' } },
-        { data: { name: 'project-4.docx', kind: 'docx', size: '900 KB' } },
-      ],
-    },
-    {
-      data: { name: 'Reports', kind: 'dir', size: '400 KB', items: 2 },
-      children: [
-        { data: { name: 'Report 1', kind: 'doc', size: '100 KB' } },
-        { data: { name: 'Report 2', kind: 'doc', size: '300 KB' } },
-      ],
-    },
-    {
-      data: { name: 'Other', kind: 'dir', size: '109 MB', items: 2 },
-      children: [
-        { data: { name: 'backup.bkp', kind: 'bkp', size: '107 MB' } },
-        { data: { name: 'secret-note.txt', kind: 'txt', size: '2 MB' } },
-      ],
-    },
+    
+   
   ];
+
+  /* 
+  
+  {
+      data: { Name: 'Projects',  Items: 5, Total: 130 },
+      children: [
+        { data: { Name: 'Projects',  Items: 1, Total: 130 } },
+        { data: { Name: 'Projects',  Items: 2, Total: 130 } },
+        { data: { Name: 'Projects',  Items: 3, Total: 130 } }
+      ],
+    },
+  
+  */
 
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;
