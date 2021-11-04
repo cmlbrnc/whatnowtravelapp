@@ -40,10 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-  
-
       this.authService.onTokenChange().pipe(takeUntil(this.destroy$)).subscribe((r:any)=>{
-        
         this.user=r.payload;
       })
       this.menuService.onItemClick()

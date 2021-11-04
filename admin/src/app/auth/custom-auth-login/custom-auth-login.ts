@@ -39,7 +39,7 @@ export class CustomAuthLoginComponent {
       .subscribe((authResult: NbAuthResult) => {
         console.log(authResult);
 
-        this.router.navigate(['/'], { relativeTo: this.route });
+        window.location.href = "/";
       });
   }
 

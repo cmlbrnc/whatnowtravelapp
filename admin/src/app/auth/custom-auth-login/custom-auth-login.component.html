@@ -1,8 +1,11 @@
+<nb-card>
+  <nb-card-header>Login By Google</nb-card-header>
+  <nb-card-body class="example-items-rows">
+    <button nbButton fullWidth status="primary"  *ngIf="!(isAuthenticated$ | async)"
+    (click)="loginWithGoogle()">Login</button>
+   
+  </nb-card-body>
+</nb-card>
 
 
-<button
-  *ngIf="!(isAuthenticated$ | async)"
-  (click)="loginWithGoogle()">
-  Login with google
-</button>
 

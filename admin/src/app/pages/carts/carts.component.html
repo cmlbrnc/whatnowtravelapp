@@ -1,0 +1,28 @@
+<div class="row bg-white pt-3 px-4">
+  <h2 class="m-0 p-0">Cart List</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col" sortable="name" (sort)="onSort($event)">UserId</th>
+    <th scope="col" sortable="area" (sort)="onSort($event)">Items</th>
+    <th scope="col" sortable="population" (sort)="onSort($event)">Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cart of carts">
+    <th scope="row">
+      {{ cart.id }}
+
+    </th>
+    <td>
+    
+      {{ cart.userId }}
+    </td>
+    <td>{{ cart.items.length | number }}</td>
+    <td>{{ cart.total | number }}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+

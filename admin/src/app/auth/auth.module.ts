@@ -1,3 +1,4 @@
+import { NbCardModule, NbButtonModule } from '@nebular/theme';
 import { LoginGuard } from './../services/login-guard.service';
 import { AuthGuard } from './../services/auth-guard.service';
 import { CommonModule } from '@angular/common';
@@ -95,6 +96,8 @@ import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password
         }),
       ],
     }),
+    NbCardModule,
+    NbButtonModule
   ],
  
   declarations: [
