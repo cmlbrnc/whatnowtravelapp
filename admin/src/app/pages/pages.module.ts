@@ -2,7 +2,7 @@ import { ItemsModule } from './items/items.module';
 import { CartsModule } from './carts/carts.module';
 
 import { NgModule } from '@angular/core';
-import { NbMenuModule } from '@nebular/theme';
+import { NbMenuModule, NbPopoverModule, NbWindowModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -16,7 +16,9 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     NbMenuModule,
     MiscellaneousModule,
     CartsModule,
-    ItemsModule
+    ItemsModule,
+  
+    
   ],
   declarations: [
     PagesComponent,

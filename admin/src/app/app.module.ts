@@ -35,7 +35,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { NbFirebaseGoogleStrategy, NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
 import { NbAuthModule, NbAuthStrategyOptions, NbPasswordStrategyMessage, NbPasswordStrategyModule } from '@nebular/auth';
-import { NavbarComponent } from './navbar/navbar.component';
+
 
 
 
@@ -45,7 +45,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent
+  declarations: [AppComponent
     ],
   imports: [
     BrowserModule,

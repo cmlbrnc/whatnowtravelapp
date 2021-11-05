@@ -1,0 +1,38 @@
+
+  <div *ngIf="cartItems" >
+    
+
+
+    <div class="row bg-white pt-3 px-4">
+      <h2 class="m-0 p-0">Cart item list</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+        <th scope="col" sortable="area" (sort)="onSort($event)">Price</th>
+        <th scope="col" sortable="population" (sort)="onSort($event)">Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of cartItems;let i=index" >
+        <th scope="row">
+          {{ i+1 }}
+    
+        </th>
+        <td>
+        
+          {{ item.name }}
+        </td>
+        <td> {{ item.price | number }} 
+        
+          
+        </td>
+        <td>{{ item.quantity | number }}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+    
+  </div>
+

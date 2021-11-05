@@ -32,9 +32,11 @@ export class CustomAuthLoginComponent {
   logout() {
     this.authService.logout('google')
       .pipe()
-      .subscribe((authResult: NbAuthResult) => {});
+      .subscribe((authResult: NbAuthResult) => {
+     
+      });
 
-    this.auth.
+  
   }
 
   loginWithGoogle() {
@@ -42,6 +44,7 @@ export class CustomAuthLoginComponent {
       .pipe()
       .subscribe((authResult: NbAuthResult) => {
         console.log(authResult);
+        localStorage.setItem('cartId','');
 
         window.location.href = "/";
       });

@@ -10,6 +10,8 @@ import {
   NbSelectModule,
   NbListModule,
   NbIconModule,
+  NbPopoverModule,
+  NbWindowModule,
 } from '@nebular/theme';
 
 
@@ -17,6 +19,8 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { CartsComponent } from './carts.component';
 
 import { FormsModule } from '@angular/forms';
+import { CarditemsComponent } from './carditems/carditems.component';
+
 
 @NgModule({
   imports: [
@@ -31,10 +35,14 @@ import { FormsModule } from '@angular/forms';
     NbSelectModule,
     NbListModule,
     NbIconModule,
-    NbButtonModule
+    NbButtonModule,
+    NbPopoverModule,
+    NbWindowModule.forRoot(),
+    
   ],
   declarations: [
-    CartsComponent
+    CartsComponent,
+    CarditemsComponent
   ],
 })
 export class CartsModule { }

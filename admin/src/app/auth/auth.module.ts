@@ -1,12 +1,10 @@
 import { NbCardModule, NbButtonModule } from '@nebular/theme';
-import { LoginGuard } from './../services/login-guard.service';
+
 import { AuthGuard } from './../services/auth-guard.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { NbAuthModule, NbAuthStrategyOptions, NbPasswordStrategyMessage, NbPasswordStrategyModule } from '@nebular/auth';
+
+import { NbAuthModule } from '@nebular/auth';
 import { NbFirebaseAuthModule, NbFirebasePasswordStrategy, NbFirebaseGoogleStrategy } from '@nebular/firebase-auth';
 
 import { FirebaseAPIService } from './firebase-api.service';
@@ -15,7 +13,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import {
   CustomAuthLoginComponent
 } from './custom-auth-login/custom-auth-login';
-import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password-auth-showcase.component';
+
 
 @NgModule({
   imports: [
@@ -102,13 +100,11 @@ import { PasswordAuthShowcaseComponent } from './password-auth-showcase/password
  
   declarations: [
     AuthComponent,
-    PasswordAuthShowcaseComponent,
     CustomAuthLoginComponent,
   ],
   providers: [
     FirebaseAPIService,
-    AuthGuard,
-    LoginGuard
+    AuthGuard
   ],
 })
 export class AuthModule {

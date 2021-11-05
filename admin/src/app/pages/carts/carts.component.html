@@ -10,16 +10,19 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let cart of carts">
+  <tr *ngFor="let cart of carts;let i=index">
     <th scope="row">
-      {{ cart.id }}
+      {{ i+1 }}
 
     </th>
     <td>
     
       {{ cart.userId }}
     </td>
-    <td>{{ cart.items.length | number }}</td>
+    <td> {{ cart.quantity | number }} 
+    
+      <button nbButton (click)="openWindow(cart)" >see items... </button> 
+    </td>
     <td>{{ cart.total | number }}</td>
   </tr>
   </tbody>
