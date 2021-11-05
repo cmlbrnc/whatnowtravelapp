@@ -5,6 +5,7 @@ import { NbAuthResult, NbAuthService, NbAuthToken } from '@nebular/auth';
 
 import { FirebaseAPIService } from '../firebase-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'custom-auth-login',
@@ -21,6 +22,7 @@ export class CustomAuthLoginComponent {
     private firebaseApi: FirebaseAPIService,
     private authService: NbAuthService,
     private router: Router,
+    private auth:AngularFireAuth,
     private route: ActivatedRoute,
   ) {
     this.userToken$ = this.authService.onTokenChange();
@@ -31,6 +33,8 @@ export class CustomAuthLoginComponent {
     this.authService.logout('google')
       .pipe()
       .subscribe((authResult: NbAuthResult) => {});
+
+    this.auth.
   }
 
   loginWithGoogle() {
